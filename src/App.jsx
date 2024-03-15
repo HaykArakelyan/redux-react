@@ -1,7 +1,8 @@
 
 import { useDispatch, useSelector } from 'react-redux'
-import { clear, update } from './reducers'
+import { clear, update, toUpperCase } from './reducers/textValueReducer'
 import { useState } from 'react'
+import './index.css'
 
 function App() {
   const dispatch = useDispatch()
@@ -13,7 +14,15 @@ function App() {
   const checkTextValue = useSelector((state) => state.textValue.textValue)
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+      }}
+    >
       <input
         type='text'
         value={test}
@@ -27,13 +36,25 @@ function App() {
         UPDATE
       </button>
 
-      <br />
-      ====================
-      <br />
+      <button onClick={() => dispatch(toUpperCase())}>
+        UPPER CASE
+      </button>
+
       {/* ONLY TO TEST OF THE STATE IS BEING UPDATED */}
-      {checkTextValue}
-      <br />
-      ====================
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center"
+      }}>
+        <span>
+          ====================
+        </span>
+        {checkTextValue}
+        <span>
+          ====================
+        </span>
+      </div>
     </div>
   )
 }
